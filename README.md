@@ -1,1 +1,1 @@
-"# .nvim" 
+# Personal Vim Configs.

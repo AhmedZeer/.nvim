@@ -1,3 +1,5 @@
+local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -618,6 +620,27 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n","n","nzzzv")
+
+
+-- Open New Window
+vim.keymap.set('n', '<C-n>', '<C-w>s', opts)
+vim.keymap.set('n', '<C-m>', '<C-w>v', opts)
+
+-- Better window navigation
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+
+-- Resize with arrows
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- between buffers
+vim.keymap.set("n", "<leader>l", ":bnext<CR>", opts)
+vim.keymap.set("n", "<leader>h", ":bprevious<CR>", opts)
+
 vim.keymap.set("n","N","Nzzz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 

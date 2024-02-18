@@ -27,6 +27,14 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Markdown Render
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -316,7 +324,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'lua', 'python', 'javascript', 'vimdoc', 'vim'},
+    ensure_installed = { 'c', 'lua', 'python', 'javascript', 'vimdoc', 'vim', 'markdown'},
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -605,9 +613,8 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
 vim.opt.smartindent = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 
-vim.opt.hlsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 10
 
@@ -620,6 +627,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n","n","nzzzv")
+vim.keymap.set("n","N","Nzzz")
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>e", vim.cmd.Vex)
 
 
 -- Open New Window
@@ -643,4 +653,5 @@ vim.keymap.set("n", "<leader>h", ":bprevious<CR>", opts)
 
 vim.keymap.set("n","N","Nzzz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 

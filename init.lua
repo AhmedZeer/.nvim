@@ -654,4 +654,13 @@ vim.keymap.set("n", "<leader>h", ":bprevious<CR>", opts)
 vim.keymap.set("n","N","Nzzz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+function ColorMyPencils(color) 
+	color = color or "moonfly"
+	vim.cmd.colorscheme(color)
 
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+end
+
+ColorMyPencils()
